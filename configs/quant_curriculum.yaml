@@ -1,0 +1,29 @@
+# Progressive Quantization Curriculum
+# Phases transition from full precision to ternary weights.
+# Percentages are relative to total training steps.
+#
+# BF16 warmup:  Let the model learn basic representations
+# INT8:         First quantization step, mild precision reduction
+# INT4:         Aggressive quantization, model adapts to low-bit
+# Ternary:      Final 1.58-bit target, majority of training
+
+phases:
+  - name: "bf16_warmup"
+    quant_mode: "none"
+    start_pct: 0.0
+    end_pct: 0.10
+
+  - name: "int8_adapt"
+    quant_mode: "int8"
+    start_pct: 0.10
+    end_pct: 0.30
+
+  - name: "int4_adapt"
+    quant_mode: "int4"
+    start_pct: 0.30
+    end_pct: 0.55
+
+  - name: "ternary_final"
+    quant_mode: "ternary"
+    start_pct: 0.55
+    end_pct: 1.0

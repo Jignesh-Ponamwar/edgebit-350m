@@ -1,0 +1,19 @@
+model:
+  hidden_dim: 64
+  ffn_dim: 176
+  n_layers: 2
+  n_heads: 4
+  n_kv_heads: 2
+  head_dim: 16
+  vocab_size: 4096
+  max_seq_len: 128
+  rms_norm_eps: 1.0e-6
+  rope_theta: 10000.0
+  tie_embeddings: true
+  group_size: 16
+  quant_mode: "ternary"
+  embedding_quant: "none"
+  kv_cache_quant: true
+  use_subln: true
+  use_qk_norm: true
+  qk_norm_type: "rmsnorm"

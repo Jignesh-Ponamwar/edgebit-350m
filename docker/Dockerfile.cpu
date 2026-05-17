@@ -1,0 +1,28 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir torch torchvision torchaudio \
+       --index-url https://download.pytorch.org/whl/cpu
+
+COPY modeling/ modeling/
+COPY runtime/ runtime/
+COPY export/ export/
+COPY eval/ eval/
+COPY configs/ configs/
+
+ENV PYTHONPATH=/app
+ENV OMP_NUM_THREADS=4
+ENV MKL_NUM_THREADS=4
+
+HEALTHCHECK --interval=30s --timeout=5s \
+    CMD python -c "from modeling.model import EdgeBitForCausalLM; print('ok')"
+
+ENTRYPOINT ["python"]
+CMD ["-m", "runtime.bench_runtime", "--preset", "tiny", "--quant_modes", "none", "ternary"]
