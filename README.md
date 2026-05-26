@@ -239,17 +239,6 @@ edgebit-350m/
 | [Showcase](docs/showcase.md) | Presentation guide, demo ideas, portfolio strategy |
 | [Model Card](MODEL_CARD.md) | HuggingFace-style model card |
 
-## Blog Posts
-
-| Post | Topic |
-|------|-------|
-| [Why Edge-Native AI Matters](blog/01_why_edge_native_ai_matters.md) | Motivation and deployment philosophy |
-| [Building a Ternary Transformer](blog/02_building_a_ternary_transformer.md) | BitLinear, STE, curriculum design |
-| [What We Learned Training](blog/03_what_we_learned_training.md) | Practical lessons and debugging |
-| [Runtime Engineering](blog/04_runtime_engineering_for_low_bit_llms.md) | Packing, CPU optimization, memory |
-| [Why Small Models Matter](blog/05_why_small_models_matter.md) | Cost, privacy, latency arguments |
-| [QAT Challenges](blog/06_challenges_of_quantization_aware_training.md) | Gradients, stability, reproducibility |
-
 ---
 
 ## Key Design Decisions
